@@ -1,0 +1,41 @@
+//LOCALHOST GET ALL ROUTES
+GET http://localhost:3000/routes
+###
+
+// LOCALHOST GET ROUTE BY ID
+GET http://localhost:3000/routes/65c5319b602e6c98be128e2a
+###
+
+// LOCALHOST CREATE ROUTE
+POST http://localhost:3000/routes HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Flying Purple People Eater",
+    "grade": "5.12",
+    "holdColor": "purple",
+    "setter": "kevin k",
+    "startDate": "1/25/24",
+    "endDate": " ",
+    "attempts": "19"
+}
+###
+
+// LOCALHOST UPDATE ROUTE BY ID
+PUT http://localhost:3000/routes/65c535139b0d6768be3fccff HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Flying Purple People Eater",
+    "grade": "5.12",
+    "holdColor": "purple",
+    "setter": "kevin k",
+    "startDate": "1/25/24",
+    "endDate": "2/8/24",
+    "attempts": "25"
+}
+###
+
+// LOCALHOST DELETE ROUET BY ID
+DELETE http://localhost:3000/routes/65c535139b0d6768be3fccff
+###
