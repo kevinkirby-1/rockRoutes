@@ -2,6 +2,7 @@ const routes = require('express').Router()
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger-output.json')
 const routesController = require('../controllers/routes.js')
+const validation = require("../middleware/validation.js")
 
 // SWAGGER DOCS
 routes.use('/api-docs', swaggerUi.serve);
@@ -14,10 +15,10 @@ routes.get('/routes', routesController.getALL);
 routes.get('/routes/:id', routesController.getSingleRoute)
 
 // CREATE ROUTE
-routes.post('/routes', routesController.createRoute)
+routes.post('/routes', validation.validateRoute, routesController.createRoute)
 
 // UPDATE ROUTE BY ID
-routes.put('/routes/:id', routesController.updateRoute)
+routes.put('/routes/:id', validation.validateRoute, routesController.updateRoute)
 
 // DELETE ROUTE BY ID
 routes.delete('/routes/:id', routesController.deleteRoute)
