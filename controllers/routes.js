@@ -112,16 +112,11 @@ const deleteRoute = async  (req, res) => {
     }
 }
 
-// DISPLAY USER INFO
-const userInfo = (req, res) => {
-    res.status(200).send("Hello " + req.oidc.user.name);
-}
 
 module.exports = {
     getALL,
     getSingleRoute,
     createRoute,
     updateRoute,
-    deleteRoute,
-    userInfo
+    deleteRoute
 }

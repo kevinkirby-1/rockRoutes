@@ -10,10 +10,18 @@
   "schemes": [
     "https"
   ],
+  "tags": [
+    {"name": "Routes"},
+    { "name": "Gyms"},
+    { "name": "User"}
+  ],
   "paths": {
-    "/": {
+    "/user": {
       "get": {
-        "description": "",
+        "tags": [
+          "User"
+        ],
+        "description": "Display a welcome with the users name",
         "responses": {
           "200": {
             "description": "OK"
@@ -21,19 +29,12 @@
         }
       }
     },
-    "/api-docs": {
-      "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
     "/routes": {
       "get": {
-        "description": "",
+        "tags": [
+          "Routes"
+        ],
+        "description": "Get all routes from the database",
         "responses": {
           "200": {
             "description": "OK"
@@ -44,7 +45,10 @@
         }
       },
       "post": {
-        "description": "",
+        "tags": [
+          "Routes"
+        ],
+        "description": "Add a route to the database",
         "parameters": [
           {
             "name": "body",
@@ -53,25 +57,25 @@
               "type": "object",
               "properties": {
                 "name": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "grade": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "holdColor": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "setter": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "startDate": {
-                  "example": "any"
+                  "example": "date object"
                 },
                 "endDate": {
-                  "example": "any"
+                  "example": "date object"
                 },
                 "attempts": {
-                  "example": "any"
+                  "example": "int"
                 }
               }
             }
@@ -92,7 +96,10 @@
     },
     "/routes/{id}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Routes"
+        ],
+        "description": "Get a route by id",
         "parameters": [
           {
             "name": "id",
@@ -111,7 +118,10 @@
         }
       },
       "put": {
-        "description": "",
+        "tags": [
+          "Routes"
+        ],
+        "description": "Update a route by id",
         "parameters": [
           {
             "name": "id",
@@ -126,25 +136,25 @@
               "type": "object",
               "properties": {
                 "name": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "grade": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "holdColor": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "setter": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "startDate": {
-                  "example": "any"
+                  "example": "date object"
                 },
                 "endDate": {
-                  "example": "any"
+                  "example": "date object"
                 },
                 "attempts": {
-                  "example": "any"
+                  "example": "int"
                 }
               }
             }
@@ -163,7 +173,10 @@
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "Routes"
+        ],
+        "description": "Delete a route by id",
         "parameters": [
           {
             "name": "id",
@@ -182,12 +195,146 @@
         }
       }
     },
-    "/user": {
+    "/gyms": {
       "get": {
-        "description": "",
+        "tags": [
+          "Gyms"
+        ],
+        "description": "Get all gyms from the database",
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Gyms"
+        ],
+        "description": "Create a gym",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "string"
+                },
+                "address": {
+                  "example": "string"
+                },
+                "phone": {
+                  "example": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/gyms/{id}": {
+      "get": {
+        "tags": [
+          "Gyms"
+        ],
+        "description": "Get a gym by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/gym/{id}": {
+      "put": {
+        "tags": [
+          "Gyms"
+        ],
+        "description": "Update a gym by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "string"
+                },
+                "address": {
+                  "example": "string"
+                },
+                "phone": {
+                  "example": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Gyms"
+        ],
+        "description": "Delete a gym by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
